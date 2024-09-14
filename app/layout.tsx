@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { firaGo, helvetica, helveticaNeue } from './fonts/fonts';
 import './globals.css';
+import Header from './components/Header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,6 +22,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({
       <body
         className={`${firaGo.variable} ${helvetica.variable} ${helveticaNeue.variable}} antialiased`}
       >
+        <Header />
         <div className="px-1 md:px-2 2xl:px-3">{children}</div>
       </body>
     </html>
