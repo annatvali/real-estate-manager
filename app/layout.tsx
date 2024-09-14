@@ -1,17 +1,6 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { firaGo, helvetica, helveticaNeue } from './fonts/fonts';
 import './globals.css';
-
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -30,9 +19,9 @@ const RootLayout: React.FC<RootLayoutProps> = ({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${firaGo.variable} ${helvetica.variable} ${helveticaNeue.variable}} antialiased`}
       >
-        {children}
+        <div className="px-1 md:px-2 2xl:px-3">{children}</div>
       </body>
     </html>
   );
