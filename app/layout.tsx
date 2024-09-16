@@ -20,7 +20,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({
   return (
     <html lang="en">
       <body
-        className={`${firaGo.variable} ${helvetica.variable} ${helveticaNeue.variable}} antialiased`}
+        className={`${firaGo.variable} ${helvetica.variable} ${helveticaNeue.variable} antialiased`}
       >
         <Header />
         <div className="px-1 md:px-2 2xl:px-3">{children}</div>
