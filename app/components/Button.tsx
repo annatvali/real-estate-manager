@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary';
   component?: 'link' | 'button';
   onClick?: () => void;
+  hasIcon?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   component = 'link',
   onClick,
+  hasIcon = false,
 }) => {
   const commonClasses = clsx(
     'group inline-flex items-center gap-[2px] rounded-[10px] px-[16px] py-[14px] font-firago font-medium text-base transition duration-300',
@@ -38,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
   if (component === 'button') {
     return (
       <button className={commonClasses} onClick={onClick}>
-        <span className={iconClasses}></span>
+        {hasIcon && <span className={iconClasses}></span>}
         {children}
       </button>
     );
@@ -46,7 +48,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <Link className={commonClasses} href={href || '#'}>
-      <span className={iconClasses}></span>
+      {hasIcon && <span className={iconClasses}></span>}
       {children}
     </Link>
   );
