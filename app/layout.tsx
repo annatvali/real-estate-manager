@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { firaGo, helvetica, helveticaNeue } from './fonts/fonts';
 import './globals.css';
 import Header from './components/Header';
+import StoreProvider from './StoreProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,12 +20,14 @@ const RootLayout: React.FC<RootLayoutProps> = ({
 }>) => {
   return (
     <html lang="en">
-      <body
-        className={`${firaGo.variable} ${helvetica.variable} ${helveticaNeue.variable} antialiased`}
-      >
-        <Header />
-        <div className="px-1 md:px-2 2xl:px-3">{children}</div>
-      </body>
+      <StoreProvider>
+        <body
+          className={`${firaGo.variable} ${helvetica.variable} ${helveticaNeue.variable} antialiased`}
+        >
+          <Header />
+          <main className="px-1 md:px-2 2xl:px-3">{children}</main>
+        </body>
+      </StoreProvider>
     </html>
   );
 };
