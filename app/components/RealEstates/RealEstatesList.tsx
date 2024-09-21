@@ -25,8 +25,8 @@ const RealEstatesList: React.FC = () => {
           address={estate.address}
           bedrooms={estate.bedrooms}
           area={estate.area}
-          zipCode={estate.zip_code}
-          isRental={estate.is_rental}
+          zip_code={estate.zip_code}
+          is_rental={estate.is_rental}
         />
       ))}
     </div>
