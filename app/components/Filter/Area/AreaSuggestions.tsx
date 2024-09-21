@@ -10,17 +10,25 @@ const AreaSuggestions: React.FC<AreaSuggestionsProps> = ({
   onMaxAreaClick,
 }) => {
   return (
-    <div className="mt-4 flex justify-between">
+    <div className="mt-4 grid grid-cols-[1fr_max-content]">
       <div className="flex flex-col">
         {suggestions.map((price) => (
-          <span key={price} onClick={() => onMinAreaClick(price)}>
+          <span
+            className="cursor-pointer"
+            key={price}
+            onClick={() => onMinAreaClick(price)}
+          >
             {price.toLocaleString()} მ²
           </span>
         ))}
       </div>
       <div className="flex flex-col">
         {suggestions.map((price) => (
-          <span key={price} onClick={() => onMaxAreaClick(price)}>
+          <span
+            className="cursor-pointer"
+            key={price}
+            onClick={() => onMaxAreaClick(price)}
+          >
             {price.toLocaleString()} მ²
           </span>
         ))}
