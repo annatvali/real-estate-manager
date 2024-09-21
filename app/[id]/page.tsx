@@ -3,11 +3,11 @@
 import React from 'react';
 import { useGetRealEstateByIdQuery } from '@/services/apiSlice';
 import Loading from '../components/Loading/Loading';
-import RealEstateImg from './RealEstateImg';
-import DetailsCard from './DetailsCard';
+import RealEstateImg from '../components/DetailsPage/RealEstateImg';
+import DetailsCard from '../components/DetailsPage/DetailsCard';
 import Button from '../components/Button';
-import AgentCard from './AgentCard';
-import BackToHomeLink from './BacktoHomeLink';
+import AgentCard from '../components/DetailsPage/AgentCard';
+import BackToHomeLink from '../components/DetailsPage/BacktoHomeLink';
 
 interface PageProps {
   params: {
