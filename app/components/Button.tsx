@@ -5,7 +5,7 @@ interface ButtonProps {
   href?: string;
   children: React.ReactNode;
   className?: string;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'delete';
   component?: 'link' | 'button';
   onClick?: () => void;
   hasIcon?: boolean;
@@ -26,6 +26,8 @@ const Button: React.FC<ButtonProps> = ({
       'bg-red-primary text-white hover:bg-red-hover': variant === 'primary',
       'border border-red-primary text-red-primary hover:bg-red-primary hover:text-white':
         variant === 'secondary',
+      'border border-gray-medium text-gray-medium hover:bg-gray-medium hover:text-white':
+        variant === 'delete',
     },
     className
   );
@@ -40,7 +42,9 @@ const Button: React.FC<ButtonProps> = ({
   if (component === 'button') {
     return (
       <button className={commonClasses} onClick={onClick}>
-        {hasIcon && <span className={iconClasses}></span>}
+        {hasIcon && variant !== 'delete' && (
+          <span className={iconClasses}></span>
+        )}
         {children}
       </button>
     );
@@ -48,7 +52,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <Link className={commonClasses} href={href || '#'}>
-      {hasIcon && <span className={iconClasses}></span>}
+      {hasIcon && variant !== 'delete' && <span className={iconClasses}></span>}
       {children}
     </Link>
   );
