@@ -1,29 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-interface Region {
-  id: number;
-  name: string;
-}
-
-interface City {
-  id: number;
-  name: string;
-  region_id: number;
-  region: Region;
-}
-
-interface RealEstate {
-  id: number;
-  address: string;
-  zip_code: string;
-  price: number;
-  area: number;
-  bedrooms: number;
-  is_rental: boolean;
-  image: string;
-  city_id: number;
-  city: City;
-}
+import { Region, City, RealEstate } from '@/types/realEstate.types';
 
 const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
@@ -34,7 +10,6 @@ export const api = createApi({
     prepareHeaders: (headers, { endpoint }) => {
       if (endpoint !== 'getRegions' && endpoint !== 'getCities') {
         headers.set('Authorization', `Bearer ${apiToken}`);
-        console.log('Headers:', headers);
       }
       return headers;
     },
@@ -49,8 +24,22 @@ export const api = createApi({
     getRealEstates: builder.query<RealEstate[], void>({
       query: () => 'real-estates',
     }),
+    getRealEstateById: builder.query<RealEstate, number>({
+      query: (id) => `real-estates/${id}`,
+    }),
+    deleteRealEstateById: builder.mutation<void, number>({
+      query: (id) => ({
+        url: `real-estates/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-export const { useGetRegionsQuery, useGetCitiesQuery, useGetRealEstatesQuery } =
-  api;
+export const {
+  useGetRegionsQuery,
+  useGetCitiesQuery,
+  useGetRealEstatesQuery,
+  useGetRealEstateByIdQuery,
+  useDeleteRealEstateByIdMutation,
+} = api;
