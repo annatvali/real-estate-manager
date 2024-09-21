@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { RealEstate } from '@/types/realEstate.types';
-import { formatPrice } from '@/utils/formatPrice';
+import { formatThousands } from '@/utils/formatThousands';
 
-const Card: React.FC<RealEstate> = ({
+type CardProps = Omit<RealEstate, 'city_id'>;
+
+const Card: React.FC<CardProps> = ({
   id,
   image,
   price,
@@ -11,8 +13,8 @@ const Card: React.FC<RealEstate> = ({
   address,
   bedrooms,
   area,
-  zipCode,
-  isRental,
+  zip_code,
+  is_rental,
 }) => {
   return (
     <Link
@@ -30,17 +32,18 @@ const Card: React.FC<RealEstate> = ({
         <div
           className={`absolute left-[23px] top-[23px] rounded-[15px] bg-black-primary-50 px-[18px] py-[6px] font-medium text-white`}
         >
-          {isRental ? 'ქირავდება' : 'იყიდება'}
+          {is_rental ? 'ქირავდება' : 'იყიდება'}
         </div>
         <div className="flex flex-col gap-[20px]">
           <div className="flex flex-col gap-[6px]">
             <p className="font-black-primary text-3xl font-bold">
-              {formatPrice(price)} ₾
+              {formatThousands(price)} ₾
             </p>
             <p className="flex gap-[5px] text-black-primary-50">
               <span className="icon-[heroicons-solid--location-marker] h-6 w-6"></span>
-              <span>{city.name}, </span>
-              <span>{address}</span>
+              <span>
+                {city.name}, {address}
+              </span>
             </p>
           </div>
           <div className="flex gap-[32px] text-black-primary-50">
@@ -54,7 +57,7 @@ const Card: React.FC<RealEstate> = ({
             </span>
             <span className="flex items-center gap-[5px]">
               <span className="icon-[bi--signpost-fill] h-6 w-6"></span>
-              <span>{zipCode}</span>
+              <span>{zip_code}</span>
             </span>
           </div>
         </div>
