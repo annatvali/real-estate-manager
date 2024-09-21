@@ -29,6 +29,7 @@ const config: Config = {
       },
       colors: {
         'gray-primary': '#dbdbdb',
+        'gray-medium': '#676E76',
         'gray-dark': '#808a93',
         'gray-light': '#f3f3f3',
         'black-primary': '#021526',
