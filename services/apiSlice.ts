@@ -18,6 +18,9 @@ export const api = createApi({
     getRegions: builder.query<Region[], void>({
       query: () => 'regions',
     }),
+    getRealEstatesByRegion: builder.query({
+      query: (region) => `real-estates?region=${region}`,
+    }),
     getCities: builder.query<City[], void>({
       query: () => 'cities',
     }),
@@ -38,6 +41,7 @@ export const api = createApi({
 
 export const {
   useGetRegionsQuery,
+  useGetRealEstatesByRegionQuery,
   useGetCitiesQuery,
   useGetRealEstatesQuery,
   useGetRealEstateByIdQuery,

@@ -26,6 +26,7 @@ const config: Config = {
         xl: '1.25rem',
         '2xl': '1.5rem',
         '3xl': '1.75rem',
+        '4xl': '2rem',
       },
       colors: {
         'gray-primary': '#dbdbdb',
