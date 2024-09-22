@@ -53,7 +53,7 @@ const DetailsPage: React.FC<PageProps> = ({ params }) => {
 
   return (
     <>
-      <div className="mt-[125px] flex justify-start gap-[68px]">
+      <div className="mt-[125px] flex justify-start">
         <BackToHomeLink />
         {realEstate!.image && realEstate?.created_at && (
           <RealEstateImg
@@ -62,7 +62,7 @@ const DetailsPage: React.FC<PageProps> = ({ params }) => {
             is_rental={realEstate.is_rental}
           />
         )}
-        <div className="flex flex-col justify-between">
+        <div className="ml-[68px] flex flex-col justify-between">
           {realEstate && (
             <DetailsCard
               image={realEstate.image}
