@@ -1,7 +1,10 @@
 'use client';
 
-import React from 'react';
-import { useGetRealEstateByIdQuery } from '@/services/apiSlice';
+import {
+  useGetRealEstateByIdQuery,
+  useDeleteRealEstateByIdMutation,
+} from '@/services/apiSlice';
+import { useRouter } from 'next/navigation';
 import Loading from '../components/Loading/Loading';
 import RealEstateImg from '../components/DetailsPage/RealEstateImg';
 import DetailsCard from '../components/DetailsPage/DetailsCard';
@@ -17,11 +20,24 @@ interface PageProps {
 }
 
 const DetailsPage: React.FC<PageProps> = ({ params }) => {
+  const router = useRouter();
   const {
     data: realEstate,
     error,
     isLoading,
   } = useGetRealEstateByIdQuery(params.id);
+  const [deleteRealEstate] = useDeleteRealEstateByIdMutation();
+
+  const handleDelete = async (): void => {
+    try {
+      await deleteRealEstate(params.id).unwrap();
+      alert('Real estate listing deleted successfully.');
+      router.push('/');
+    } catch (err) {
+      console.error('Failed to delete the real estate listing:', err);
+      alert('Failed to delete the real estate listing.');
+    }
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -62,7 +78,11 @@ const DetailsPage: React.FC<PageProps> = ({ params }) => {
           )}
           {realEstate!.agent && <AgentCard agent={realEstate!.agent} />}
           <div>
-            <Button component={'button'} variant={'delete'}>
+            <Button
+              component={'button'}
+              variant={'delete'}
+              onClick={handleDelete}
+            >
               ლისტინგის წაშლა
             </Button>
           </div>
