@@ -28,7 +28,7 @@ const DetailsPage: React.FC<PageProps> = ({ params }) => {
   } = useGetRealEstateByIdQuery(params.id);
   const [deleteRealEstate] = useDeleteRealEstateByIdMutation();
 
-  const handleDelete = async (): void => {
+  const handleDelete = async (): Promise<void> => {
     try {
       await deleteRealEstate(params.id).unwrap();
       alert('Real estate listing deleted successfully.');
@@ -53,7 +53,7 @@ const DetailsPage: React.FC<PageProps> = ({ params }) => {
 
   return (
     <>
-      <div className="mt-[125px] flex justify-between gap-[68px]">
+      <div className="mt-[125px] flex justify-start gap-[68px]">
         <BackToHomeLink />
         {realEstate!.image && realEstate?.created_at && (
           <RealEstateImg
